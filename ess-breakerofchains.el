@@ -3,7 +3,7 @@
 ;; Author: Justin Silverman (justinsilverman@psu.edu)
 ;; Maintainer: Justin Silverman (justinsilverman@psu.edu)
 ;; Version: 0.1
-;; Package-Requires: (dependencies)
+;; Package-Requires: (ess)
 ;; Homepage: https://github.com/jsilve24/ess-breakerofchains
 ;; Keywords: R ESS 
 
