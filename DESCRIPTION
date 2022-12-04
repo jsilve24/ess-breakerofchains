@@ -1,0 +1,14 @@
+Package: ESSBreakerOfChains
+Title: BreakerOfChains for Emacs and ESS
+Version: 0.1
+Authors@R: 
+    person("Justin", "Silverman", , "justinsilverman@psu.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-3063-2098"))
+Description: Small utility package intended to be called from Emacs-Lisp. This package creates an interface allowing use of MilesMcBains BreakerOfChains package <https://github.com/MilesMcBain/breakerofchains> from ESS in Emacs. 
+License: GPL-3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.2
+Imports: breakerofchains
+Remotes:
+    MilesMcBain/breakerofchains
