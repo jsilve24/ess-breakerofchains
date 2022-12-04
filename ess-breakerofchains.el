@@ -41,7 +41,8 @@
 	 ;; doc-lines to formated R vector
 	 (doc-lines-r (ess-boc--parse-doc-lines doc-lines)))
     ;; make sure breakerofchains and ess-breakerofchains is installed
-    ;; TODO
+    ;; TODO make this smarter, if not installed, then install. 
+    (ess-load-library--override "ESSBreakerOfChains")
     ;; pass to R for further processing
     (message (format "%s" dont-assign-result-p))
     (ess-send-string proc (format "ess_break_chains(%s, %s, %s, %s)"
