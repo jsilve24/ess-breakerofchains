@@ -1,5 +1,5 @@
 * ess-breakerofchains
-Emacs (ESS) interface to MilesMcBains BreakerOfChains R library
+Emacs (ESS) interface to [[https://github.com/MilesMcBain/breakerofchains][MilesMcBains BreakerOfChains]] R library
 
 ** Install and Suggested Configuration 
 #+begin_src emacs-lisp :eval none
