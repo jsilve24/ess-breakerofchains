@@ -65,8 +65,7 @@ this string, ESSBreakerOfChains is loaded (and installed).")
 				  doc-lines-r
 				  doc-cursor-line
 				  dont-print-result-p
-				  dont-assign-result-p)))
-  )
+				  dont-assign-result-p))))
 
 (defun ess-boc--get-doc-lines ()
     "Return list of buffer lines from line 1 to current line."
