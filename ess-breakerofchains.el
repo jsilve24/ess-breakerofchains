@@ -39,7 +39,7 @@
       if (!devtools.install) {
         install.packages('devtools')
       }
-      devtools::install_github('jsilve24/ess-breakerofchains')
+      devtools::install_github('jsilve24/ess-breakerofchains', force=TRUE)
       installed <- require('ESSBreakerOfChains')
       stopifnot(installed, 'Could not install ESSBreakerOfChains')
     }
