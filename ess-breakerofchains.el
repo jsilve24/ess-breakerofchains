@@ -30,7 +30,7 @@
 
 (require 'ess)
 
-(defvar ess-boc--require-string
+(defvar ess-boc-require-string
   "if (!('ESSBreakerOfChains' %in% (.packages()))) {
     ## check if installed 
     installed <- require('ESSBreakerOfChains')
@@ -58,7 +58,7 @@ this string, ESSBreakerOfChains is loaded (and installed).")
 	 ;; doc-lines to formated R vector
 	 (doc-lines-r (ess-boc--parse-doc-lines doc-lines)))
     ;; make sure breakerofchains and ess-breakerofchains is installed
-    (ess-send-string proc ess-boc--require-string)
+    (ess-send-string proc ess-boc-require-string)
     ;; pass to R for further processing
     (message (format "%s" dont-assign-result-p))
     (ess-send-string proc (format "ess_break_chains(%s, %s, %s, %s)"

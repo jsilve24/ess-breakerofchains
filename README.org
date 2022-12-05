@@ -2,13 +2,23 @@
 Emacs (ESS) interface to [[https://github.com/MilesMcBain/breakerofchains][MilesMcBains BreakerOfChains]] R library
 
 ** Install and Suggested Configuration 
+This package is currently only on GitHub. Easiest way to install is with straight, el-get, quelpa or the like. Alternatively you can clone and install locally. The configuration below uses straight and use-package. 
 #+begin_src emacs-lisp :eval none
   (use-package ess-breakerofchains
     :straight (ess-breakerofchains
                :type git :host github :repo "jsilve24/ess-breakerofchains")
     :config
-    (define-key 'ess-r-mode-map "<C-S-return>" #'ess-boc-break-chain))
+    (define-key ess-r-mode-map "<C-S-return>" #'ess-boc-break-chain))
 #+end_src
 
-#+RESULTS:
+*Note*: This package requires a sister R package to work properly. That sister package is included in this repo and is called ESSBreakerOfChains and it has only a single function called =ess_break_chains=. To prevent myself from having to think about if that sister package is loaded or installed when trying to call =ess-boc-break-chain= from Emacs, I opted to have the =ess-boc-break-chain= package load/install ESSBreakerOfChains automatically when needed. If you would prefer to change this behavior, you can edit the variable =ess-boc-require-string=. For example here is a setting that causes the =ess-boc-break-chain= to simply load the library if it is present but to otherwise return an error. 
+
+#+begin_src emacs-lisp :eval none
+  (setq ess-boc-require-string
+   "if (!('ESSBreakerOfChains' %in% (.packages()))) {
+      # If not already loaded... 
+      installed <- require('ESSBreakerOfChains')
+      stopifnot(installed, 'ESSBreakerOfChains is not installed')
+    }")
+#+end_src
 
