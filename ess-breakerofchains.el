@@ -30,8 +30,23 @@
 
 (require 'ess)
 
+(defvar ess-boc--require-string
+  "if (!('ESSBreakerOfChains' %in% (.packages()))) {
+    ## check if installed 
+    installed <- require('ESSBreakerOfChains')
+    if (!installed) {
+      devtools.install <- require('devtools')
+      if (!devtools.install) {
+        install.packages('devtools')
+      }
+      devtools::install_github('jsilve24/ess-breakerofchains')
+      installed <- require('ESSBreakerOfChains')
+      stopifnot(installed, 'Could not install ESSBreakerOfChains')
+    }
+  }" "String to be passed to ESS. Should ensure that after executing this string, ESSBreakerOfChains is loaded (and installed).")
+
 (defun ess-boc-break-chain (&optional dont-print-result dont-assign-result)
-    "Elisp port of break_chains. Do not print result if universal-argument passed."
+  "Elisp port of break_chains. Do not print result if universal-argument passed."
   (interactive "P")
   (let* ((doc-lines (ess-boc--get-doc-lines))
 	 (doc-cursor-line (line-number-at-pos))
@@ -41,8 +56,7 @@
 	 ;; doc-lines to formated R vector
 	 (doc-lines-r (ess-boc--parse-doc-lines doc-lines)))
     ;; make sure breakerofchains and ess-breakerofchains is installed
-    ;; TODO make this smarter, if not installed, then install. 
-    (ess-load-library--override "ESSBreakerOfChains")
+    (ess-send-string proc ess-boc--require-string)
     ;; pass to R for further processing
     (message (format "%s" dont-assign-result-p))
     (ess-send-string proc (format "ess_break_chains(%s, %s, %s, %s)"
@@ -62,13 +76,6 @@ formated as R vector."
     (let* ((lines (mapconcat (lambda (x) (format "'%s'" x))
 			     doc-lines ",")))
       (format "c(%s)" lines)))
-
-(defun ess-boc-install-r-package ()
-  "Install the ESSBreakerOfChains R Package if not already installed."
-  (interactive)
-  (let* ((dir (file-name-directory (buffer-file-name))))
-    (ess-r-package-eval-linewise
-     (format  "devtools::install('%s')\n" dir) "Installing %s")))
 
 (provide 'ess-breakerofchains)
 

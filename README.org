@@ -7,11 +7,6 @@ Emacs (ESS) interface to MilesMcBains BreakerOfChains R library
     :straight (ess-breakerofchains
                :type git :host github :repo "jsilve24/ess-breakerofchains")
     :config
-    ;; There is currently no configuration options. That said, to be able to use
-    ;; this package you need to at some point run the command M-x
-    ;; ess-boc-install-r-package which will install the R package
-    ;; ESSBreakerOfChains that this package interfaces with. Don't put that in
-    ;; your init file or it will try installing everytime you restart emacs.
     (define-key 'ess-r-mode-map "<C-S-return>" #'ess-boc-break-chain))
 #+end_src
 
