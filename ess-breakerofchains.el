@@ -43,7 +43,9 @@
       installed <- require('ESSBreakerOfChains')
       stopifnot(installed, 'Could not install ESSBreakerOfChains')
     }
-  }" "String to be passed to ESS. Should ensure that after executing this string, ESSBreakerOfChains is loaded (and installed).")
+  }"
+  "String to be passed to ESS. Should ensure that after executing
+this string, ESSBreakerOfChains is loaded (and installed).")
 
 (defun ess-boc-break-chain (&optional dont-print-result dont-assign-result)
   "Elisp port of break_chains. Do not print result if universal-argument passed."
